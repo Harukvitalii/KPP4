@@ -8,11 +8,11 @@ app.config['SECRET_KEY'] = 'kdsjlksjfldjf'
  
 
 
-messages = pgbotdb.get_chat_data(chat_id=CHAT_ID)
+messages1 = pgbotdb.get_chat_data(chat_id=CHAT_ID)
 
 
 messages = []
-for message in messages: 
+for message in messages1: 
     m = {}
     m['title'] = message[2]
     m['content'] = message[3]

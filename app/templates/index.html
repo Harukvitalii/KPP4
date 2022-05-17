@@ -1,11 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Messages {% endblock %}</h1>
+    <h1 class="dskfjlsd">{% block title %} Messages {% endblock %}</h1>
     {% for message in messages %}
         <div class='message'>
-            <h3>{{ message['title'] }}</h3>
-            <p>{{ message['content'] }}</p>
+            <h3 class="dskfjlsd" class="msg">{{ message['title'] }}</h3>
+            <p class="dskfjlsd">{{ message['content'] }}</p>
         </div>
+        <style>
+            .dskfjlsd {
+                padding: 0px;
+                margin: 5px;
+                border-left: 25px;
+                padding-left: 30px;
+                font-weight: 500;
+                
+    
+            }
+            .msg {
+                font-size: 19;
+                padding-left: 30px;
+                /* background-color: bisque; */
+            }
+        </style>
     {% endfor %}
 {% endblock %}
