@@ -1,5 +1,0 @@
-andrii: how open file?
-vetal:@andrii just duble-click
-vlad:@andrii or press open
-vetal:how to close file?
-andrii:@vetal press close
