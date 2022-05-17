@@ -1,1 +1,1 @@
-worker: python flosk.py
+web: gunicorn app:flosk
