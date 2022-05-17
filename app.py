@@ -36,7 +36,7 @@ class HttpGetHandler(BaseHTTPRequestHandler):
 # %3A
 
 def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
-    server_address = ("127.0.0.1", 8000)
+    server_address = ("mik-chat.herokuapp.com", 8000)
     httpd = server_class(server_address, handler_class)
 
     httpd.serve_forever()
