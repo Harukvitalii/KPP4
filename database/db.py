@@ -1,7 +1,6 @@
 
 import psycopg2
 from config import HOST, db_name, password, user,port
-import json
 from psycopg2.errors import UniqueViolation
         
 class PGBOTDB:
@@ -23,10 +22,29 @@ class PGBOTDB:
         
         """users"""
         self.cursor.execute(
-            """CREATE TABLE IF NOT EXISTS users(
+            """CREATE TABLE IF NOT EXISTS kpp4(
                 id serial NOT NULL PRIMARY KEY,
-                first_name varchar(50),
-                nick_name varchar(50),
-                user_id bigint UNIQUE NOT NULL,
+                chat_id int NOT NULL,
+                name varchar(50),
+                text varchar(750)
                 );""")
         self.conn.commit()
+
+
+    def add_text(self, name,text,chat_id=1):
+        """Добавляєм запись в чат"""
+        self.cursor.execute("""INSERT INTO kpp4 
+        (chat_id,name, text) VALUES 
+        (%s,%s,%s);""",
+        (chat_id, name, text))
+
+
+    def get_chat_data(self,chat_id):
+        'Забераєм всі данні'
+        self.cursor.execute("""SELECT * FROM kpp4 WHERE chat_id = %s;
+        """,(chat_id,))
+        res = self.cursor.fetchall()
+        return res
+
+
+     
