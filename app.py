@@ -1,7 +1,5 @@
 from http.server import BaseHTTPRequestHandler
 from http.server import HTTPServer
-import os
-import requests
 import urllib
 from loader import pgbotdb
 class HttpGetHandler(BaseHTTPRequestHandler):
@@ -24,43 +22,30 @@ class HttpGetHandler(BaseHTTPRequestHandler):
         self.wfile.write('</form>'.encode())
         self.wfile.write('</body></html>'.encode())
         req= urllib.parse.unquote(self.requestline)
+        print(self.requestline)
         req = req.replace('GET /page.py?coment=','').replace(' HTTP/1.1', '')
         if req == '': return
         name_text = req.split(':')
-        print(name_text)
         name = name_text[0].replace('+',' ')
         text = name_text[-1].replace('+',' ')
         print(name, text)
-        pgbotdb.add_text(name, text,2)
+        pgbotdb.add_text(name, text,4)
 
 # %3A
 
 def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
-    server_address = ("mik-chat.herokuapp.com", 8000)
+    server_address = ("127.0.0.1", 8000)
     httpd = server_class(server_address, handler_class)
 
     httpd.serve_forever()
 
 def readData(comentmas: list):
-    data = pgbotdb.get_chat_data(chat_id=2)
+    data = pgbotdb.get_chat_data(chat_id=4)
     for dat in data:
         name = dat[2]
         text = dat[3]
         print(name,text)
         comentmas.append(f'{name}: {text}')
-
-
-'''
-def writeData(comentmas):
-    while(True):
-        for i in comentmas:
-            print(i,end='')
-        coment=input()+'\n'
-        comentmas.append(coment)
-        with open("data.txt",'a+') as file:
-            file.write(coment)
-        os.system('cls')
-'''
 
 
 run(handler_class=HttpGetHandler)

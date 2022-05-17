@@ -4,6 +4,7 @@ import os
 
 load_dotenv()
 
+
 HOST = os.getenv('HOST')
 user = os.getenv('user')
 password = os.getenv('password')
