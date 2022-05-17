@@ -25,13 +25,13 @@ class HttpGetHandler(BaseHTTPRequestHandler):
         self.wfile.write('</body></html>'.encode())
         req= urllib.parse.unquote(self.requestline)
         req = req.replace('GET /page.py?coment=','').replace(' HTTP/1.1', '')
-
+        if req == '': return
         name_text = req.split(':')
         print(name_text)
         name = name_text[0].replace('+',' ')
         text = name_text[-1].replace('+',' ')
         print(name, text)
-        pgbotdb.add_text(name, text)
+        pgbotdb.add_text(name, text,2)
 
 # %3A
 
@@ -42,14 +42,12 @@ def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
     httpd.serve_forever()
 
 def readData(comentmas: list):
-    data = pgbotdb.get_chat_data(chat_id=1)
+    data = pgbotdb.get_chat_data(chat_id=2)
     for dat in data:
         name = dat[2]
         text = dat[3]
         print(name,text)
         comentmas.append(f'{name}: {text}')
-
-
 
 
 '''
