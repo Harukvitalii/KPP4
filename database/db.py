@@ -33,13 +33,15 @@ class PGBOTDB:
 
     def add_text(self, name,text,chat_id=1):
         """Добавляєм запись в чат"""
+        if 'GET /' in name or 'GET /' in text:
+            return 0
         if 'GET /favicon.ico' in name or 'GET /favicon.ico' in text: 
-            pass 
-        else: 
-            self.cursor.execute("""INSERT INTO kpp4 
-            (chat_id,name, text) VALUES 
-            (%s,%s,%s);""",
-            (chat_id, name, text))
+            return 0
+
+        self.cursor.execute("""INSERT INTO kpp4 
+        (chat_id,name, text) VALUES 
+        (%s,%s,%s);""",
+        (chat_id, name, text))
 
 
     def get_chat_data(self,chat_id):

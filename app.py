@@ -28,8 +28,8 @@ class HttpGetHandler(BaseHTTPRequestHandler):
 
         name_text = req.split(':')
         print(name_text)
-        name = name_text[0]
-        text = name_text[-1]
+        name = name_text[0].replace('+',' ')
+        text = name_text[-1].replace('+',' ')
         print(name, text)
         pgbotdb.add_text(name, text)
 
@@ -41,14 +41,13 @@ def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
 
     httpd.serve_forever()
 
-def readData(comentmas):
+def readData(comentmas: list):
     data = pgbotdb.get_chat_data(chat_id=1)
     for dat in data:
         name = dat[2]
         text = dat[3]
         print(name,text)
-
-    comentmas.append()
+        comentmas.append(f'{name}: {text}')
 
 
 
