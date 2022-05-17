@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Добавити нове повідомлення {% endblock %}</h1>
-    <form method="post">
+    <h1 class="dslkjsdf">{% block title %} Добавити нове повідомлення {% endblock %}</h1>
+    <div >
+    <div class="col-lg-12"><form method="post">
         <label for="title">Імя</label>
         <br>
-        <input type="text" name="title"
-               placeholder="Message title"
+        <input  type="text" name="title"
+               placeholder="Імя"
+               rows="5"
                value="{{ request.form['title'] }}"></input>
         <br>
 
         <label for="content">Ваш текст</label>
         <br>
-        <textarea name="content"
-                  placeholder="Message content"
-                  rows="15"
+        <textarea  name="content"
+                  placeholder="Що ви хочете порадити"
+                  rows="5"
                   cols="60"
                   >{{ request.form['content'] }}</textarea>
         <br>
-        <button type="submit">Відправити</button>
-    </form>
+        <button type="submit", class ="btn btn-primary">Відправити</button>
+    </form></div></div>
+    <style>
+        .dslkjsdf {
+            padding: 20px;
+            margin: 5px;
+
+        }
+    </style>
 {% endblock %}

@@ -1,4 +1,4 @@
-from database.db import PGBOTDB
+from app.database.db import PGBOTDB
 
 
 pgbotdb = PGBOTDB()

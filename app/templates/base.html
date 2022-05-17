@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %} - StackOverflow</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <style>
         .message {
             padding: 10px;
             margin: 5px;
-            background-color: #f3f3f3
+ 
         }
         nav a {
-            color: #d64161;
-            font-size: 3em;
+            color: #786fa3;
+            font-size: 2em;
             margin-left: 50px;
             text-decoration: none;
         }
@@ -26,9 +27,9 @@
 </head>
 <body>
     <nav>
-        <a href="{{ url_for('index') }}">FlaskApp</a>
-        <a href="{{ url_for('create') }}">Create</a>
-        <a href="#">About</a>
+        <a href="{{ url_for('index') }}">Overflow</a>
+        <a href="{{ url_for('create') }}">Добавити повідомлення</a>
+        
     </nav>
     <hr>
     <div class="content">

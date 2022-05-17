@@ -1,6 +1,6 @@
 
 import psycopg2
-from config import HOST, db_name, password, user,port
+from app.config import HOST, db_name, password, user,port
 from psycopg2.errors import UniqueViolation
         
 class PGBOTDB:

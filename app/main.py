@@ -1,13 +1,23 @@
-from flask import Flask, render_template, request, url_for, flash, redirect
- 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'ewjrweiroiu43847jiowerj'
 
-messages = [{'title': 'Message One',
-             'content': 'Message One Content'},
-            {'title': 'Message Two',
-             'content': 'Message Two Content'}
-            ]
+from flask import Flask, render_template, request, url_for, flash, redirect
+from app.loader import pgbotdb
+
+CHAT_ID = 3
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'kdsjlksjfldjf'
+ 
+
+
+messages = pgbotdb.get_chat_data(chat_id=CHAT_ID)
+
+
+messages = []
+for message in messages: 
+    m = {}
+    m['title'] = message[2]
+    m['content'] = message[3]
+    messages.append(m)
+print(messages)
 
 @app.route('/')
 def index():
@@ -19,8 +29,9 @@ def create():
         title = request.form['title']
         content = request.form['content']
         print(content)
+        pgbotdb.add_text(title,content,chat_id=CHAT_ID)
         if not title:
-            flash('Title is required!')
+            flash('Name is required!')
         elif not content:
             flash('Content is required!')
         else:
