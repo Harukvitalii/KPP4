@@ -1,7 +1,9 @@
 from http.server import BaseHTTPRequestHandler
 from http.server import HTTPServer
 import os
-
+import requests
+import urllib
+from loader import pgbotdb
 class HttpGetHandler(BaseHTTPRequestHandler):
     """Обработчик с реализованным методом do_GET."""
 
@@ -16,18 +18,39 @@ class HttpGetHandler(BaseHTTPRequestHandler):
         readData(self.comentmas)
         for el in self.comentmas:
             self.wfile.write(f'<h3>{el}</h3>'.encode())
+        self.wfile.write('<form action="/page.py">'.encode())
+        self.wfile.write('<input type="text" id="coment" name="coment">'.encode())
+        self.wfile.write('<input type="submit">'.encode())
+        self.wfile.write('</form>'.encode())
         self.wfile.write('</body></html>'.encode())
+        req= urllib.parse.unquote(self.requestline)
+        req = req.replace('GET /page.py?coment=','').replace(' HTTP/1.1', '')
+
+        name_text = req.split(':')
+        print(name_text)
+        name = name_text[0]
+        text = name_text[-1]
+        print(name, text)
+        pgbotdb.add_text(name, text)
+
+# %3A
 
 def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
     server_address = ("127.0.0.1", 8000)
     httpd = server_class(server_address, handler_class)
+
     httpd.serve_forever()
 
-
 def readData(comentmas):
-    with open("data.txt",'r') as file:
-        for line in file:
-            comentmas.append(line)
+    data = pgbotdb.get_chat_data(chat_id=1)
+    for dat in data:
+        name = dat[2]
+        text = dat[3]
+        print(name,text)
+
+    comentmas.append()
+
+
 
 
 '''
