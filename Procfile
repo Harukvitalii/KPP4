@@ -1,1 +1,1 @@
-web: gunicorn app:flosk
+web: gunicorn app:app
