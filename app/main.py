@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
  
 app = Flask(__name__)
- 
+app.config['SECRET_KEY'] = 'ewjrweiroiu43847jiowerj'
+
 messages = [{'title': 'Message One',
              'content': 'Message One Content'},
             {'title': 'Message Two',
@@ -17,7 +18,7 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-
+        print(content)
         if not title:
             flash('Title is required!')
         elif not content:
