@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 from app.loader import pgbotdb
 
-CHAT_ID = 10
+CHAT_ID = 11
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'kdsjlksjfldjf'
  
