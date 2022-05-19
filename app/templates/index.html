@@ -4,7 +4,7 @@
     <h1 class="dskfjlsd">{% block title %} Messages {% endblock %}</h1>
     {% for message in messages %}
         <div class='message'>
-            <h3 class="dskfjlsd" class="msg">{{ message['title'] }}</h3>
+            <h3 class="msg">{{ message['title'] }}</h3>
             <p class="dskfjlsd">{{ message['content'] }}</p>
         </div>
         <style>

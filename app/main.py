@@ -10,7 +10,6 @@ app.config['SECRET_KEY'] = 'kdsjlksjfldjf'
 
 messages1 = pgbotdb.get_chat_data(chat_id=CHAT_ID)
 
-
 messages = []
 for message in messages1: 
     m = {}
